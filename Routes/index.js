@@ -6,7 +6,7 @@ import admin from '../middlewares/admin'
 
 const router = express.Router()
 
-
+// var abhay
 
 router.post('/register',registerController.register)
 router.post('/login',loginController.login)
