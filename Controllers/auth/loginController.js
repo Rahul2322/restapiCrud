@@ -66,6 +66,7 @@ const loginController = {
         }
         res.json({status:1})
     }
+     
 }
 
 export default loginController

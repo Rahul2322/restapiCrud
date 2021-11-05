@@ -13,7 +13,7 @@ const db = mongoose.connection
 db.once('open',()=>{
     console.log("Connections are successful")
 })
-db.on('error',()=>{
+db.on('error',()=>{ 
     console.log("Connections are not successful")
 })
 

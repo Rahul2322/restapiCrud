@@ -34,7 +34,7 @@ const productController = {
         if (error) {
             //delete the uploaded file
             fs.unlink(`${appRoot}/${filePath}`,(err)=>{
-                //second argument is callback so if error and not directly can return next 
+                //second argument is callback so if error then that err will be for err in deleting
                 if(err){
                     return next(CustomErrorHandler.serverError(err.message))
 
@@ -156,12 +156,12 @@ const productController = {
     },
 
     async index(req,res,next){
-          
-        //pagination mongoose-pagination it is used for large no of datas in db
-
+          const resultPerPage = 10;
+          const currentpage = req.query.page || 1;
+          const skip = resultPerPage*(currentpage-1)
         let document;
         try{
-            document = await Product.find().select('-updatedAt -__v').sort({_id:-1})
+            document = await Product.find().select('-updatedAt -__v').limit(resultPerPage).skip(skip).sort({_id:-1})
         }catch(err){
             return next(CustomErrorHandler.serverError())
         }
