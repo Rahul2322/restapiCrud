@@ -1,5 +1,5 @@
 import express from 'express'
-import {registerController , loginController , userController ,refreshController ,productController} from '../Controllers'
+import {registerController , loginController , userController ,refreshController ,productController, orderController} from '../Controllers'
 import auth from '../middlewares/auth'
 import admin from '../middlewares/admin'
 
@@ -28,6 +28,17 @@ router.put('/products/:id',[auth,admin],productController.update)
 router.delete('/products/:id',[auth,admin],productController.destroy)
 router.get('/products/',productController.index)
 router.get('/products/:id',productController.show)
+
+
+//order routes
+
+router.post('/order/new',auth,orderController.newOrder)
+router.get('/orders/me',auth,orderController.myOrders)
+router.get('/order/:id',auth,orderController.getSingleUserOrders)
+router.get('/admin/orders',[auth,admin],orderController.getAllOrders)
+router.put('/admin/order/:id',[auth,admin],orderController.updateOrder)
+router.delete('/admin/order/:id',[auth,admin],orderController.deleteOrder)
+router.delete('/order/:id',auth,orderController.deleteOrderByUser)
 
 
 export default router;

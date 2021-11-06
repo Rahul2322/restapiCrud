@@ -47,7 +47,7 @@ const productController = {
 
         }
 
-        const {name , price , size} = req.body;
+        const {name , price , qty} = req.body;
 
         let document;
         try{
@@ -55,7 +55,7 @@ const productController = {
             document = await Product.create({
                 name,
                 price,
-                size,
+                qty,
                 image : filePath
             })
 
@@ -106,7 +106,7 @@ const productController = {
         console.log(appRoot)
     }
 
-    const {name , price , size} = req.body;
+    const {name , price , qty} = req.body;
 
     let document;
     try{
@@ -114,7 +114,7 @@ const productController = {
         document = await Product.findOneAndUpdate({_id:req.params.id},{
             name,
             price,
-            size,
+            qty,
            ...(req.file && { image : filePath})
         },{new:true});
  
