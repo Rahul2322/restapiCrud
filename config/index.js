@@ -8,6 +8,9 @@ export const{
     DEBUG_MODE,
     JWT_SECRET,
     REFRESH_SECRET,
-    APP_URL
+    APP_URL,
+    STRIPE_SECRET_KEY,
+    STRIPE_API_KEY
+
 
 } = process.env;

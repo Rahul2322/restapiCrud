@@ -1,5 +1,5 @@
 import express from 'express'
-import {registerController , loginController , userController ,refreshController ,productController, orderController} from '../Controllers'
+import {registerController , loginController , userController ,refreshController ,productController, orderController, paymentController} from '../Controllers'
 import auth from '../middlewares/auth'
 import admin from '../middlewares/admin'
 
@@ -39,6 +39,11 @@ router.get('/admin/orders',[auth,admin],orderController.getAllOrders)
 router.put('/admin/order/:id',[auth,admin],orderController.updateOrder)
 router.delete('/admin/order/:id',[auth,admin],orderController.deleteOrder)
 router.delete('/order/:id',auth,orderController.deleteOrderByUser)
+
+//payment routes
+
+router.post("/payment/process",auth,paymentController.processPayment)
+router.get("/stripeapikey",auth,paymentController.sendStripeApiKey)
 
 
 export default router;
